@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpce08kkcsoau"]
+
+[ext_resource type="PackedScene" uid="uid://dex7jl81nxfoy" path="res://coffeearm.tscn" id="1_jolj8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2iqj2"]
+
+[sub_resource type="Sky" id="Sky_jolj8"]
+sky_material = SubResource("ProceduralSkyMaterial_2iqj2")
+
+[sub_resource type="Environment" id="Environment_2iqj2"]
+background_mode = 2
+sky = SubResource("Sky_jolj8")
+ambient_light_color = Color(0.626059, 0.352082, 0.593423, 1)
+reflected_light_source = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_jolj8"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_jolj8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jolj8"]
+size = Vector3(28.4229, 0.430664, 27.7139)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2iqj2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.693589, 0.389302, -0.606118, 0.120889, 0.766562, 0.630689, 0.710155, -0.510712, 0.484616, 0, 0, 0)
+
+[node name="Armature" parent="." instance=ExtResource("1_jolj8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000269569, 0, -3.49283e-05)
+
+[node name="CollisionShape3D" parent="Armature/CharacterBody3D" index="0"]
+transform = Transform3D(13.006, 0, 0, 0, -5.68512e-07, 13.006, 0, -13.006, -5.68512e-07, 0, 0, -156.719)
+
+[node name="Skeleton3D" parent="Armature/CharacterBody3D/arm2/Armature_001" index="0"]
+bones/0/position = Vector3(8.50407e-06, -0.9717, -148.634)
+bones/1/position = Vector3(1.92743e-05, 8.53652, 0.187089)
+bones/3/position = Vector3(-2.38419e-07, 14.0527, -7.63827e-06)
+bones/3/rotation = Quaternion(-0.0601299, 0.0088281, -0.144992, 0.987565)
+bones/4/position = Vector3(3.87769e-09, 33.6167, -2.71395e-06)
+bones/4/rotation = Quaternion(-4.7938e-07, 3.56784e-08, -0.00872648, 0.999962)
+bones/5/position = Vector3(-5.90674e-07, 30.2989, 3.1166e-06)
+bones/5/rotation = Quaternion(2.51804e-07, -1.61137e-08, -1.81608e-08, 1)
+bones/6/position = Vector3(3.16124, 5.1809, 3.69301)
+bones/6/rotation = Quaternion(0.218559, -0.0684713, -0.254808, 0.939477)
+bones/7/position = Vector3(3.8743e-06, 2.30722, 2.73883e-05)
+bones/7/rotation = Quaternion(-4.91161e-05, -5.58794e-08, -2.57406e-06, 1)
+bones/8/position = Vector3(7.49528e-06, 1.90811, -4.11123e-05)
+bones/8/rotation = Quaternion(7.32262e-05, -2.20258e-07, -4.17733e-06, 1)
+bones/9/position = Vector3(-9.79006e-06, 4.69478, 2.27988e-05)
+bones/10/position = Vector3(3.24982, 13.8715, 0.385998)
+bones/10/rotation = Quaternion(1.77011e-13, -2.88827e-08, 6.12298e-06, 1)
+bones/11/rotation = Quaternion(2.23736e-06, 1.29398e-07, -1.19233e-05, 1)
+bones/12/rotation = Quaternion(-2.23736e-06, -1.37809e-07, 5.76396e-06, 1)
+bones/13/position = Vector3(4.05141e-07, 3.17597, 2.19769e-06)
+bones/14/position = Vector3(0.0126793, 14.1025, -2.05356e-06)
+bones/14/rotation = Quaternion(1.81508e-13, 6.88747e-08, -4.8182e-06, 1)
+bones/15/position = Vector3(1.96968e-07, 3.09699, 7.6609e-07)
+bones/15/rotation = Quaternion(2.38393e-13, -1.21037e-07, 1.17412e-05, 1)
+bones/16/position = Vector3(-4.9491e-07, 3.57799, 6.18987e-07)
+bones/16/rotation = Quaternion(-8.3368e-13, 2.14332e-08, -6.95232e-06, 1)
+bones/17/position = Vector3(2.609e-07, 3.44499, -1.5945e-06)
+bones/18/position = Vector3(-3.39083, 13.5575, 0.260006)
+bones/18/rotation = Quaternion(-1.66533e-16, -2.79354e-09, 9.31322e-10, 1)
+bones/19/rotation = Quaternion(2.74637e-06, -1.38424e-07, 1.42236e-05, 1)
+bones/20/position = Vector3(4.82404e-07, 2.77799, 1.10495e-05)
+bones/20/rotation = Quaternion(-5.37175e-06, 1.02852e-07, -1.42599e-05, 1)
+bones/21/position = Vector3(1.19483e-06, 2.906, -6.65578e-06)
+bones/22/position = Vector3(-6.04356, 12.4074, 0.273)
+bones/22/rotation = Quaternion(-6.73621e-09, -3.54011e-08, 9.31323e-10, 1)
+bones/23/position = Vector3(4.65204e-07, 2.21209, 1.9265e-06)
+bones/23/rotation = Quaternion(-0.000257822, 1.19599e-07, 8.42901e-08, 1)
+bones/24/rotation = Quaternion(0.000263339, -3.87551e-07, -3.86572e-07, 1)
+bones/25/position = Vector3(9.34629e-07, 2.76899, 6.41948e-06)
+
+[node name="BoneAttachment3D" parent="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D" index="1"]
+transform = Transform3D(0.0174522, -0.999848, 8.87603e-08, 0.999847, 0.0174523, -2.17125e-07, 2.03591e-07, 6.25205e-08, 1, -86.6299, -5.75416, -172.218)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00838467, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999658, 1.49534e-11, 0, 1.49392e-11, 1, -0.321316, 0.503962, 4.89542)
+mesh = SubResource("SphereMesh_jolj8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(28.2887, 0, 0, 0, -1.23654e-06, 28.279, 0, -28.2887, -1.23611e-06, 0, -0.115342, 0)
+mesh = SubResource("QuadMesh_jolj8")
+skeleton = NodePath("../../WorldEnvironment")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18399, -0.284668, 0.178955)
+shape = SubResource("BoxShape3D_jolj8")
+
+[editable path="Armature"]
+[editable path="Armature/CharacterBody3D/arm2"]
+[editable path="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug2"]
+[editable path="Armature/mug1"]

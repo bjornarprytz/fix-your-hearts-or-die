@@ -1,0 +1,115 @@
+[gd_scene load_steps=18 format=3 uid="uid://bpce08kkcsoau"]
+
+[ext_resource type="Material" uid="uid://h4bw7ix8n0rm" path="res://passthru.tres" id="1_8x86g"]
+[ext_resource type="PackedScene" uid="uid://dex7jl81nxfoy" path="res://coffeearm.tscn" id="1_jolj8"]
+[ext_resource type="Material" uid="uid://d1qk2atc7vml4" path="res://channel16.tres" id="2_dcwc0"]
+[ext_resource type="Script" uid="uid://catkko75btuks" path="res://stencil.gd" id="4_8x86g"]
+[ext_resource type="Texture2D" uid="uid://bw3scxby1ucmb" path="res://assets/Textures/floor_mat_baseColor.png" id="4_bbod0"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bbod0"]
+viewport_path = NodePath("Armature/CharacterBody3D/stencil/MaskViewport")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2iqj2"]
+
+[sub_resource type="Sky" id="Sky_jolj8"]
+sky_material = SubResource("ProceduralSkyMaterial_2iqj2")
+
+[sub_resource type="Environment" id="Environment_2iqj2"]
+background_mode = 2
+sky = SubResource("Sky_jolj8")
+ambient_light_color = Color(0.626059, 0.352082, 0.593423, 1)
+reflected_light_source = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_jolj8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8x86g"]
+viewport_path = NodePath("Armature/CharacterBody3D/stencil/MaskViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbod0"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_8x86g")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8x86g"]
+
+[sub_resource type="Environment" id="Environment_bbod0"]
+background_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dcwc0"]
+albedo_texture = ExtResource("4_bbod0")
+
+[sub_resource type="QuadMesh" id="QuadMesh_jolj8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jolj8"]
+size = Vector3(50, 1, 50)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StencilContent" type="TextureRect" parent="."]
+material = ExtResource("1_8x86g")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_bbod0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2iqj2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.693589, 0.389302, -0.606118, 0.120889, 0.766562, 0.630689, 0.710155, -0.510712, 0.484616, 0, 0, 0)
+
+[node name="Armature" parent="." instance=ExtResource("1_jolj8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000269569, 0, -3.49283e-05)
+
+[node name="coffee_liquid" type="MeshInstance3D" parent="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug2" index="0"]
+transform = Transform3D(-2.4689, 0.411376, 13.1512, -13.1567, 0.0867618, -2.47263, -0.161213, -13.3806, 0.388289, -7.83841, 24.8797, -3.60614)
+visible = false
+layers = 32768
+material_override = ExtResource("2_dcwc0")
+mesh = SubResource("SphereMesh_jolj8")
+skeleton = NodePath("../../../../../../../..")
+
+[node name="seethru" type="MeshInstance3D" parent="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug2" index="1"]
+transform = Transform3D(0.521987, -0.585961, 11.9743, -4.2495, 11.1984, 0.733237, -11.2102, -4.2723, 0.279615, 4.28984, 24.3527, 0.578773)
+layers = 32768
+material_override = SubResource("StandardMaterial3D_bbod0")
+mesh = SubResource("QuadMesh_8x86g")
+skeleton = NodePath("../../../../../../../..")
+
+[node name="stencil" type="Node3D" parent="Armature/CharacterBody3D" index="2" node_paths=PackedStringArray("target_camera", "mask_camera", "mask_viewport")]
+transform = Transform3D(100, 0, 0, 0, 0, 100, 0, -100, 0, 18.6375, 16.3067, -173.186)
+script = ExtResource("4_8x86g")
+target_camera = NodePath("../PlayerCamera")
+mask_camera = NodePath("MaskViewport/MaskCamera")
+mask_viewport = NodePath("MaskViewport")
+
+[node name="MaskViewport" type="SubViewport" parent="Armature/CharacterBody3D/stencil"]
+canvas_cull_mask = 4293951488
+size = Vector2i(599, 289)
+
+[node name="MaskCamera" type="Camera3D" parent="Armature/CharacterBody3D/stencil/MaskViewport"]
+transform = Transform3D(0.589214, 0.0675485, 0.805148, 0, 0.996499, -0.083602, -0.807977, 0.0492595, 0.587151, 0.470363, -0.00135535, -0.46103)
+cull_mask = 33791
+environment = SubResource("Environment_bbod0")
+fov = 70.01
+
+[node name="CollisionShape3D" parent="Armature/CharacterBody3D" index="3"]
+transform = Transform3D(13.006, 0, 0, 0, -5.68512e-07, 13.006, 0, -13.006, -5.68512e-07, 0, 0, -156.719)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0489296, -0.0112253, -0.0309743)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(28.2887, 0, 0, 0, -1.23654e-06, 28.279, 0, -28.2887, -1.23611e-06, 0, -0.115342, 0)
+material_override = SubResource("StandardMaterial3D_dcwc0")
+mesh = SubResource("QuadMesh_jolj8")
+skeleton = NodePath("../../WorldEnvironment")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.595, 0)
+shape = SubResource("BoxShape3D_jolj8")
+
+[editable path="Armature"]
+[editable path="Armature/CharacterBody3D/arm2"]
+[editable path="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug2"]

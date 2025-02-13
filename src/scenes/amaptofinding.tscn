@@ -1,0 +1,173 @@
+[gd_scene load_steps=16 format=3 uid="uid://bpce08kkcsoau"]
+
+[ext_resource type="PackedScene" uid="uid://dex7jl81nxfoy" path="res://scenes/coffeearm.tscn" id="1_bnase"]
+[ext_resource type="Material" uid="uid://c1slbxhu1jtl2" path="res://assets/Materials/reflection.tres" id="2_hiqx5"]
+[ext_resource type="ArrayMesh" uid="uid://b48lref6jsyad" path="res://assets/3DModels/StaticMeshes/cofee_Circle.res" id="3_b28hc"]
+[ext_resource type="Shader" uid="uid://blw16txnf1wfr" path="res://assets/Shaders/coffeejitters.gdshader" id="4_f76id"]
+[ext_resource type="Texture2D" uid="uid://bw3scxby1ucmb" path="res://assets/Textures/floor_mat_baseColor.png" id="5_00lmg"]
+[ext_resource type="Texture2D" uid="uid://dmegf3lyemhlf" path="res://assets/Textures/dfc.png" id="6_bnase"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2iqj2"]
+
+[sub_resource type="Sky" id="Sky_jolj8"]
+sky_material = SubResource("ProceduralSkyMaterial_2iqj2")
+
+[sub_resource type="Environment" id="Environment_2iqj2"]
+background_mode = 2
+sky = SubResource("Sky_jolj8")
+ambient_light_color = Color(0.626059, 0.352082, 0.593423, 1)
+reflected_light_source = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bbod0"]
+viewport_path = NodePath("Armature/ReflectionCamPosition/ReflectionViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpht5"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_f76id")
+shader_parameter/albedo_texture = SubResource("ViewportTexture_bbod0")
+shader_parameter/roughness = 0.1
+shader_parameter/metallic = 0.717
+shader_parameter/wave_strength = 0.05
+shader_parameter/wave_speed = 1.0
+shader_parameter/rotation_strength = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dcwc0"]
+albedo_texture = ExtResource("5_00lmg")
+metallic = 1.0
+roughness = 0.58
+
+[sub_resource type="QuadMesh" id="QuadMesh_jolj8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jolj8"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srfa5"]
+albedo_texture = ExtResource("6_bnase")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2iqj2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.323231, 0.631121, -0.705129, 0.120889, 0.766562, 0.630689, 0.938567, 0.118616, -0.324073, 0, 0, 0)
+
+[node name="Armature" parent="." instance=ExtResource("1_bnase")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.333746, 0)
+
+[node name="arm2" parent="Armature/CharacterBody3D" index="0"]
+transform = Transform3D(-4.37114e-06, 0, 100, -100, 0, -4.37114e-06, 0, -100, 0, -11.3991, 11.8794, -154.586)
+
+[node name="Skeleton3D" parent="Armature/CharacterBody3D/arm2/Armature_001" index="0"]
+bones/0/position = Vector3(-2.5245e-05, -0.972411, -148.638)
+bones/1/position = Vector3(1.92743e-05, 8.53652, 0.187089)
+bones/3/position = Vector3(-1.06413e-06, 14.0527, 1.8587e-05)
+bones/3/rotation = Quaternion(0.196588, -0.0644402, -0.583793, 0.785103)
+bones/4/position = Vector3(-5.34116e-06, 33.6167, 1.77875e-05)
+bones/4/rotation = Quaternion(0.0404705, 0.412311, -0.446849, 0.792898)
+bones/5/position = Vector3(-5.20998e-06, 30.2989, 4.5047e-06)
+bones/5/rotation = Quaternion(-0.027438, 0.126778, -0.0195954, 0.991358)
+bones/6/position = Vector3(2.05681, 6.68165, 3.98002)
+bones/6/rotation = Quaternion(0.236991, -0.542966, -0.239715, 0.76913)
+bones/7/position = Vector3(-2.86098e-06, 2.30722, 7.18161e-06)
+bones/7/rotation = Quaternion(-2.03036e-07, -1.32479e-07, 2.00283e-08, 1)
+bones/8/position = Vector3(-6.02024e-06, 1.9081, -2.84345e-05)
+bones/8/rotation = Quaternion(0.0199457, 0.0327593, 0.409177, 0.911648)
+bones/9/position = Vector3(5.84125e-06, 4.69478, 5.54323e-06)
+bones/10/position = Vector3(1.69402, 13.2653, 0.139287)
+bones/10/rotation = Quaternion(0.643244, 0.0187844, -0.0250973, 0.765019)
+bones/11/rotation = Quaternion(0.468709, 0.102935, 0.00821942, 0.877296)
+bones/12/rotation = Quaternion(0.662072, 0.1454, 0.0116099, 0.735109)
+bones/13/position = Vector3(-1.03216e-05, 3.17599, 1.18922e-05)
+bones/14/position = Vector3(-0.781239, 13.7352, 0.610335)
+bones/14/rotation = Quaternion(0.643244, 0.0187842, -0.0250969, 0.765019)
+bones/15/position = Vector3(1.80891e-05, 3.097, -6.5717e-06)
+bones/15/rotation = Quaternion(0.468707, 0.102934, 0.00821907, 0.877297)
+bones/16/position = Vector3(-2.17529e-05, 3.57799, 5.48244e-07)
+bones/16/rotation = Quaternion(0.662073, 0.145401, 0.0116104, 0.735108)
+bones/17/position = Vector3(1.63259e-05, 3.44501, -1.19295e-06)
+bones/18/position = Vector3(-2.88309, 13.4416, 0.531341)
+bones/18/rotation = Quaternion(0.643244, 0.0187846, -0.0250973, 0.765019)
+bones/19/rotation = Quaternion(0.46871, 0.102935, 0.00821811, 0.877296)
+bones/20/position = Vector3(-6.36249e-06, 2.77799, 2.70487e-07)
+bones/20/rotation = Quaternion(0.662069, 0.145401, 0.0116105, 0.735111)
+bones/21/position = Vector3(-2.31209e-05, 2.90603, 3.54207e-06)
+bones/22/position = Vector3(-5.23185, 13.2715, -0.380036)
+bones/22/rotation = Quaternion(0.643244, 0.0187843, -0.0250973, 0.765019)
+bones/23/position = Vector3(-1.43384e-05, 2.2121, 6.13558e-06)
+bones/23/rotation = Quaternion(0.321273, 0.0842006, -0.0264969, 0.942864)
+bones/24/rotation = Quaternion(0.586, 0.1576, -0.0976028, 0.788822)
+bones/25/position = Vector3(5.30709e-06, 2.76901, -6.06703e-06)
+
+[node name="BoneAttachment3D" parent="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D" index="1"]
+transform = Transform3D(-0.049151, 0.145529, 0.988132, -0.208564, 0.966022, -0.152647, -0.976773, -0.213592, -0.0171289, -31.4596, 49.3499, -162.551)
+
+[node name="coffee" type="MeshInstance3D" parent="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug" index="1"]
+transform = Transform3D(3.04037, 7.66433, 2.06496, -0.565205, 2.41468, -8.13018, -7.91749, 2.77078, 1.37335, 4.4989, 23.4881, 0.983501)
+visible = false
+layers = 32768
+material_override = ExtResource("2_hiqx5")
+mesh = ExtResource("3_b28hc")
+skeleton = NodePath("../../../../../../../../../../../../../../..")
+
+[node name="coffee2" type="MeshInstance3D" parent="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug" index="2"]
+transform = Transform3D(2.86153, 7.21349, 1.9435, -0.531959, 2.27265, -7.65194, -7.45176, 2.60779, 1.29256, 4.244, 24.6236, 1.36182)
+layers = 32768
+material_override = SubResource("ShaderMaterial_kpht5")
+mesh = ExtResource("3_b28hc")
+skeleton = NodePath("../../../../../../../../../../../../../../..")
+
+[node name="PlayerCamera" parent="Armature/CharacterBody3D" index="1"]
+transform = Transform3D(-2.16843, 79.0373, -61.2242, 99.901, -0.666968, -4.39929, -3.88557, -61.2591, -78.9445, 23.5186, 11.1589, -202.576)
+
+[node name="CollisionShape3D" parent="Armature/CharacterBody3D" index="2"]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, 1, -1, 1.91069e-15, -4.37114e-08, 1.65436e-22, -1, -4.37114e-08, -11.3991, 11.8794, -172.035)
+
+[node name="CoffeeView" type="Node3D" parent="Armature/CharacterBody3D" index="3"]
+transform = Transform3D(-8.74226e-06, 100, -7.10542e-13, 100, 8.74226e-06, -4.37114e-06, -4.37114e-06, -1.06581e-12, -100, -161.854, -446.252, -520.948)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Armature/CharacterBody3D/CoffeeView"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.1636, 0, 5.24589e-08)
+remote_path = NodePath("../../../ReflectionCamPosition/ReflectionViewport/ReflectionCamera")
+
+[node name="ReflectionCamPosition" type="Node3D" parent="Armature"]
+transform = Transform3D(-4.18488e-08, -3.72529e-09, 1, 0, 1, 0, -1, 1.62838e-16, -4.37114e-08, 3.72529e-09, -0.333746, 2.98023e-08)
+
+[node name="ReflectionViewport" type="SubViewport" parent="Armature/ReflectionCamPosition"]
+canvas_cull_mask = 4293951488
+size = Vector2i(599, 305)
+
+[node name="ReflectionCamera" type="Camera3D" parent="Armature/ReflectionCamPosition/ReflectionViewport"]
+transform = Transform3D(1, 4.37112e-08, -4.37114e-08, 4.37114e-08, 1.06581e-14, 1, 4.37112e-08, -1, 9.01611e-15, -32.6261, 3.99737, 1.61854)
+fov = 70.01
+
+[node name="ReflectionEnv" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0489296, -0.0112253, -0.0309743)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ReflectionEnv"]
+transform = Transform3D(28.2887, 0, 0, 0, -1.23654e-06, 28.279, 0, -28.2887, -1.23611e-06, 0, -0.115342, 0)
+material_override = SubResource("StandardMaterial3D_dcwc0")
+mesh = SubResource("QuadMesh_jolj8")
+skeleton = NodePath("../../WorldEnvironment")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ReflectionEnv"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.595, 0)
+shape = SubResource("BoxShape3D_jolj8")
+
+[node name="PlayerEnv" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8719, -0.0112253, -0.0309743)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerEnv"]
+transform = Transform3D(28.2887, 0, 0, 0, -1.23654e-06, 28.279, 0, -28.2887, -1.23611e-06, 0, -0.115342, 0)
+material_override = SubResource("StandardMaterial3D_srfa5")
+mesh = SubResource("QuadMesh_jolj8")
+skeleton = NodePath("../../WorldEnvironment")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerEnv"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.595, 0)
+shape = SubResource("BoxShape3D_jolj8")
+
+[editable path="Armature"]
+[editable path="Armature/CharacterBody3D/arm2"]
+[editable path="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug"]
