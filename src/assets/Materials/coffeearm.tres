@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bscpdjd5ak0sc"]
+
+[ext_resource type="Texture2D" uid="uid://cm4bwcupbw2t8" path="res://assets/3DModels/SkeletalMeshes/arm2_whiteclown_diffuse.png" id="1_7g75d"]
+[ext_resource type="Texture2D" uid="uid://b2uv0obyqm2vo" path="res://assets/3DModels/SkeletalMeshes/arm2_Image.png" id="2_47xbl"]
+
+[resource]
+albedo_color = Color(0.817624, 0.813243, 0.801318, 1)
+albedo_texture = ExtResource("1_7g75d")
+metallic = 0.02
+roughness = 0.69
+roughness_texture = ExtResource("2_47xbl")
+roughness_texture_channel = 3

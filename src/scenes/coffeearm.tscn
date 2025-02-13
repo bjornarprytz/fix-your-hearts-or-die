@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://dex7jl81nxfoy"]
+
+[ext_resource type="PackedScene" uid="uid://3a40mn6k62gx" path="res://assets/3DModels/SkeletalMeshes/arm2.glb" id="1_ue7io"]
+[ext_resource type="Material" uid="uid://0b4ayre20rl0" path="res://assets/Materials/mugmat.tres" id="2_bmy87"]
+[ext_resource type="Material" uid="uid://bscpdjd5ak0sc" path="res://assets/Materials/coffeearm.tres" id="2_cfqrc"]
+[ext_resource type="PackedScene" uid="uid://cg18h1je8cggq" path="res://assets/3DModels/StaticMeshes/mug1.glb" id="2_ue7io"]
+
+[sub_resource type="GDScript" id="GDScript_bmy87"]
+script/source = "extends CharacterBody3D
+
+@export var speed: float = 5.0  # Movement speed
+
+func _process(delta: float) -> void:
+	var input_vector := Vector3.ZERO  # Store movement input
+
+	# Use standard \"ui_\" input actions
+	if Input.is_action_pressed(\"ui_up\"):
+		input_vector.z -= 1
+	if Input.is_action_pressed(\"ui_down\"):
+		input_vector.z += 1
+	if Input.is_action_pressed(\"ui_left\"):
+		input_vector.x -= 1
+	if Input.is_action_pressed(\"ui_right\"):
+		input_vector.x += 1
+
+	# Normalize to prevent faster diagonal movement
+	input_vector = input_vector.normalized()
+
+	# Apply movement
+	velocity = input_vector * speed
+	move_and_slide()
+"
+
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_ue7io"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cfqrc"]
+radius = 1.0
+
+[node name="Armature" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(-0.01, -8.74228e-10, 0, 0, 0, -0.01, 8.74228e-10, -0.01, 0, 0, -1.54586, 0)
+motion_mode = 1
+script = SubResource("GDScript_bmy87")
+
+[node name="arm2" parent="CharacterBody3D" instance=ExtResource("1_ue7io")]
+transform = Transform3D(100, 0, 0, 0, 0, 100, 0, -100, 0, 0, 0, -154.586)
+
+[node name="arm" parent="CharacterBody3D/arm2/Armature_001/Skeleton3D" index="0"]
+material_override = ExtResource("2_cfqrc")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="CharacterBody3D/arm2/Armature_001/Skeleton3D" index="1"]
+transform = Transform3D(0.0174522, -0.999848, 8.87603e-08, 0.999847, 0.0174523, -2.17125e-07, 2.03591e-07, 6.25205e-08, 1, -86.6299, -5.75416, -172.218)
+bone_name = "mixamorig_RightHand"
+bone_idx = 5
+
+[node name="mug" parent="CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D" instance=ExtResource("2_ue7io")]
+
+[node name="lores" parent="CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug" index="0"]
+transform = Transform3D(3.07043, 49.7816, -13.0134, -50.8161, 4.98087, 7.06438, 8.08007, 12.4083, 49.3734, -2.78789, 21.0672, -0.47963)
+material_override = ExtResource("2_bmy87")
+
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody3D/arm2/Armature_001" index="1"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationRootNode_ue7io")
+anim_player = NodePath("../../AnimationPlayer")
+
+[node name="AnimationPlayer" parent="CharacterBody3D/arm2" index="1"]
+autoplay = "idle"
+
+[node name="PlayerCamera" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(-99.901, 0.667052, 4.39941, -2.16844, 79.0372, -61.2243, -3.88557, -61.2591, -78.9444, 0.72045, 34.9177, -202.576)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -172.035)
+shape = SubResource("CapsuleShape3D_cfqrc")
+
+[editable path="CharacterBody3D/arm2"]
+[editable path="CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug"]

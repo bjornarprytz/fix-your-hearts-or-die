@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://h4bw7ix8n0rm"]
+
+[ext_resource type="Shader" uid="uid://bmlw4p4ql1n8y" path="res://assets/Shaders/stencil.gdshader" id="1_jmpe5"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_jmpe5")
+shader_parameter/target_color = Color(1, 0, 1, 1)
+shader_parameter/tolerance = 1.0
+shader_parameter/invert_mask = true
