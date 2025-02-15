@@ -1,10 +1,33 @@
-[gd_scene load_steps=15 format=3 uid="uid://bpce08kkcsoau"]
+[gd_scene load_steps=23 format=3 uid="uid://bpce08kkcsoau"]
 
 [ext_resource type="PackedScene" uid="uid://dex7jl81nxfoy" path="res://scenes/coffeearm.tscn" id="1_bnase"]
+[ext_resource type="Script" uid="uid://dw3nscnpatwn1" path="res://scenes/game.gd" id="1_hiqx5"]
+[ext_resource type="Script" uid="uid://bygh4spcns3vg" path="res://game/black_lodge_item.gd" id="2_00lmg"]
 [ext_resource type="ArrayMesh" uid="uid://b48lref6jsyad" path="res://assets/3DModels/StaticMeshes/cofee_Circle.res" id="3_b28hc"]
+[ext_resource type="Texture2D" uid="uid://c152rrt4s7tr6" path="res://assets/Textures/shitty-owl.png" id="3_veqn0"]
+[ext_resource type="Texture2D" uid="uid://dbq5lnbme36kh" path="res://assets/Textures/poop.png" id="4_8xvt2"]
 [ext_resource type="Shader" uid="uid://blw16txnf1wfr" path="res://assets/Shaders/coffeejitters.gdshader" id="4_f76id"]
 [ext_resource type="Texture2D" uid="uid://bw3scxby1ucmb" path="res://assets/Textures/floor_mat_baseColor.png" id="5_00lmg"]
+[ext_resource type="Texture2D" uid="uid://cespeewrxd4so" path="res://assets/Textures/sad-clown.png" id="5_1rrhv"]
 [ext_resource type="Texture2D" uid="uid://dmegf3lyemhlf" path="res://assets/Textures/dfc.png" id="6_bnase"]
+
+[sub_resource type="Resource" id="Resource_gggs1"]
+script = ExtResource("2_00lmg")
+description = "Owl"
+icon = ExtResource("3_veqn0")
+metadata/_custom_type_script = ExtResource("2_00lmg")
+
+[sub_resource type="Resource" id="Resource_bukng"]
+script = ExtResource("2_00lmg")
+description = "Poop"
+icon = ExtResource("4_8xvt2")
+metadata/_custom_type_script = ExtResource("2_00lmg")
+
+[sub_resource type="Resource" id="Resource_wocc3"]
+script = ExtResource("2_00lmg")
+description = "Clown"
+icon = ExtResource("5_1rrhv")
+metadata/_custom_type_script = ExtResource("2_00lmg")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2iqj2"]
 
@@ -45,6 +68,8 @@ size = Vector3(50, 1, 50)
 albedo_texture = ExtResource("6_bnase")
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_hiqx5")
+items = Array[ExtResource("2_00lmg")]([SubResource("Resource_gggs1"), SubResource("Resource_bukng"), SubResource("Resource_wocc3")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2iqj2")
