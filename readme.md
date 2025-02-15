@@ -6,6 +6,8 @@ game on itch.io: [link](https://thewarlock.itch.io/fix-your-hearts-or-die)
 
 - Push release with `./push_release.sh`
 
+### Idea
+
 ### Extra
 
 - itch.io

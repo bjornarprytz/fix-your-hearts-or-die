@@ -12,7 +12,7 @@ uniform float rotation_strength : hint_range(0.0, 0.2) = 0.1;
 
 void vertex() {
     float time_factor = TIME * wave_speed;
-	
+
 //jitter with sine
     vec3 wave_offset = vec3(
         sin(VERTEX.x * 2.0 + time_factor) * wave_strength,

@@ -1,35 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://dex7jl81nxfoy"]
 
+[ext_resource type="Script" uid="uid://dfedqr7qej0qr" path="res://scenes/player.gd" id="1_fpw7g"]
 [ext_resource type="PackedScene" uid="uid://3a40mn6k62gx" path="res://assets/3DModels/SkeletalMeshes/arm2.glb" id="1_ue7io"]
 [ext_resource type="Material" uid="uid://0b4ayre20rl0" path="res://assets/Materials/mugmat.tres" id="2_bmy87"]
 [ext_resource type="Material" uid="uid://bscpdjd5ak0sc" path="res://assets/Materials/coffeearm.tres" id="2_cfqrc"]
 [ext_resource type="PackedScene" uid="uid://cg18h1je8cggq" path="res://assets/3DModels/StaticMeshes/mug1.glb" id="2_ue7io"]
-
-[sub_resource type="GDScript" id="GDScript_bmy87"]
-script/source = "extends CharacterBody3D
-
-@export var speed: float = 5.0  # Movement speed
-
-func _process(delta: float) -> void:
-	var input_vector := Vector3.ZERO  # Store movement input
-
-	# Use standard \"ui_\" input actions
-	if Input.is_action_pressed(\"ui_up\"):
-		input_vector.z -= 1
-	if Input.is_action_pressed(\"ui_down\"):
-		input_vector.z += 1
-	if Input.is_action_pressed(\"ui_left\"):
-		input_vector.x -= 1
-	if Input.is_action_pressed(\"ui_right\"):
-		input_vector.x += 1
-
-	# Normalize to prevent faster diagonal movement
-	input_vector = input_vector.normalized()
-
-	# Apply movement
-	velocity = input_vector * speed
-	move_and_slide()
-"
 
 [sub_resource type="AnimationRootNode" id="AnimationRootNode_ue7io"]
 
@@ -41,7 +16,7 @@ radius = 1.0
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(-0.01, -8.74228e-10, 0, 0, 0, -0.01, 8.74228e-10, -0.01, 0, 0, -1.54586, 0)
 motion_mode = 1
-script = SubResource("GDScript_bmy87")
+script = ExtResource("1_fpw7g")
 
 [node name="arm2" parent="CharacterBody3D" instance=ExtResource("1_ue7io")]
 transform = Transform3D(100, 0, 0, 0, 0, 100, 0, -100, 0, 0, 0, -154.586)
