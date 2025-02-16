@@ -43,9 +43,12 @@ anim_player = NodePath("../../AnimationPlayer")
 [node name="AnimationPlayer" parent="CharacterBody3D/arm2" index="1"]
 autoplay = "idle"
 
-[node name="PlayerCamera" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(-99.901, 0.667052, 4.39941, -2.16844, 79.0372, -61.2243, -3.88557, -61.2591, -78.9444, 0.72045, 34.9177, -202.576)
+[node name="PlayerCamera" type="Camera3D" parent="CharacterBody3D/arm2"]
+transform = Transform3D(-0.99901, 0.00667051, 0.0439941, 0.0388557, 0.612591, 0.789444, -0.0216844, 0.790372, -0.612243, 0.0072045, 0.4799, 0.349177)
 current = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D/arm2/PlayerCamera"]
+transform = Transform3D(-0.00999009, -0.000216844, -0.000388557, 6.67051e-05, 0.00790372, -0.00612591, 0.000439941, -0.00612243, -0.00789444, -0.0639432, -1.51699, -1.38576)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -172.035)
