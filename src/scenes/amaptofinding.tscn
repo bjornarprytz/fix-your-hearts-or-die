@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bpce08kkcsoau"]
+[gd_scene load_steps=27 format=3 uid="uid://bpce08kkcsoau"]
 
 [ext_resource type="PackedScene" uid="uid://dex7jl81nxfoy" path="res://scenes/coffeearm.tscn" id="1_bnase"]
 [ext_resource type="Script" uid="uid://dw3nscnpatwn1" path="res://scenes/game.gd" id="1_hiqx5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cespeewrxd4so" path="res://assets/Textures/sad-clown.png" id="5_1rrhv"]
 [ext_resource type="Texture2D" uid="uid://dmegf3lyemhlf" path="res://assets/Textures/dfc.png" id="6_bnase"]
 [ext_resource type="Script" uid="uid://c3817bcdp1rtg" path="res://tank_controls.gd" id="7_veqn0"]
+[ext_resource type="Texture2D" uid="uid://dl6aoxle61geu" path="res://assets/Textures/curtains_placeholder.png" id="11_8xvt2"]
 
 [sub_resource type="Resource" id="Resource_gggs1"]
 script = ExtResource("2_00lmg")
@@ -61,6 +62,11 @@ metallic = 1.0
 roughness = 0.58
 
 [sub_resource type="QuadMesh" id="QuadMesh_jolj8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rrhv"]
+albedo_texture = ExtResource("11_8xvt2")
+metallic = 1.0
+roughness = 0.58
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_veqn0"]
 
@@ -136,6 +142,30 @@ material_override = SubResource("StandardMaterial3D_dcwc0")
 mesh = SubResource("QuadMesh_jolj8")
 skeleton = NodePath("../../WorldEnvironment")
 
+[node name="Wall1" type="MeshInstance3D" parent="ReflectionEnv"]
+transform = Transform3D(10, 0, 0, 0, -10, -1.50996e-06, 0, 1.50996e-06, -10, 0, 0, 5)
+material_override = SubResource("StandardMaterial3D_1rrhv")
+mesh = SubResource("QuadMesh_jolj8")
+skeleton = NodePath("../../WorldEnvironment")
+
+[node name="Wall2" type="MeshInstance3D" parent="ReflectionEnv"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, -5)
+material_override = SubResource("StandardMaterial3D_1rrhv")
+mesh = SubResource("QuadMesh_jolj8")
+skeleton = NodePath("../../WorldEnvironment")
+
+[node name="Wall3" type="MeshInstance3D" parent="ReflectionEnv"]
+transform = Transform3D(-4.37114e-07, 1.50996e-06, -10, 0, -10, -1.50996e-06, -10, -6.60024e-14, 4.37114e-07, 5, 0, -2.18557e-07)
+material_override = SubResource("StandardMaterial3D_1rrhv")
+mesh = SubResource("QuadMesh_jolj8")
+skeleton = NodePath("../../WorldEnvironment")
+
+[node name="Wall4" type="MeshInstance3D" parent="ReflectionEnv"]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -5, 0, 2.18557e-07)
+material_override = SubResource("StandardMaterial3D_1rrhv")
+mesh = SubResource("QuadMesh_jolj8")
+skeleton = NodePath("../../WorldEnvironment")
+
 [node name="FloorShape" type="CollisionShape3D" parent="ReflectionEnv"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.595, 0)
 shape = SubResource("WorldBoundaryShape3D_veqn0")
@@ -144,7 +174,7 @@ shape = SubResource("WorldBoundaryShape3D_veqn0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerEnv"]
-transform = Transform3D(28.2887, 0, 0, 0, -1.23654e-06, 28.279, 0, -28.2887, -1.23611e-06, 0, -0.115342, 0)
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 3, 0)
 material_override = SubResource("StandardMaterial3D_srfa5")
 mesh = SubResource("QuadMesh_jolj8")
 skeleton = NodePath("../../WorldEnvironment")
