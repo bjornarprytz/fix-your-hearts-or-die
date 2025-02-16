@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var move_speed: float = 1.0  
 @export var rotation_duration: float = 0.6  
 @export var move_duration: float = 0.4  
-var button_delay: float = 0.2
+@export var button_delay: float = 0.2
 
 
 var is_moving: bool = false  # on button push at a time
