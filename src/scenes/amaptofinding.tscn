@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bpce08kkcsoau"]
+[gd_scene load_steps=23 format=3 uid="uid://bpce08kkcsoau"]
 
 [ext_resource type="PackedScene" uid="uid://dex7jl81nxfoy" path="res://scenes/coffeearm.tscn" id="1_bnase"]
 [ext_resource type="Script" uid="uid://dw3nscnpatwn1" path="res://scenes/game.gd" id="1_hiqx5"]
@@ -7,11 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://c152rrt4s7tr6" path="res://assets/Textures/shitty-owl.png" id="3_veqn0"]
 [ext_resource type="Texture2D" uid="uid://dbq5lnbme36kh" path="res://assets/Textures/poop.png" id="4_8xvt2"]
 [ext_resource type="Shader" uid="uid://blw16txnf1wfr" path="res://assets/Shaders/coffeejitters.gdshader" id="4_f76id"]
-[ext_resource type="Texture2D" uid="uid://bw3scxby1ucmb" path="res://assets/Textures/floor_mat_baseColor.png" id="5_00lmg"]
 [ext_resource type="Texture2D" uid="uid://cespeewrxd4so" path="res://assets/Textures/sad-clown.png" id="5_1rrhv"]
 [ext_resource type="Texture2D" uid="uid://dmegf3lyemhlf" path="res://assets/Textures/dfc.png" id="6_bnase"]
 [ext_resource type="Script" uid="uid://c3817bcdp1rtg" path="res://tank_controls.gd" id="7_veqn0"]
-[ext_resource type="Texture2D" uid="uid://dl6aoxle61geu" path="res://assets/Textures/curtains_placeholder.png" id="11_8xvt2"]
+[ext_resource type="PackedScene" uid="uid://ctbdmjhbe4hro" path="res://room.tscn" id="10_veqn0"]
 
 [sub_resource type="Resource" id="Resource_gggs1"]
 script = ExtResource("2_00lmg")
@@ -56,29 +55,18 @@ shader_parameter/wave_strength = 0.067
 shader_parameter/wave_speed = 2.133
 shader_parameter/rotation_strength = 0.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dcwc0"]
-albedo_texture = ExtResource("5_00lmg")
-metallic = 1.0
-roughness = 0.58
-
-[sub_resource type="QuadMesh" id="QuadMesh_jolj8"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rrhv"]
-albedo_texture = ExtResource("11_8xvt2")
-metallic = 1.0
-roughness = 0.58
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_veqn0"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srfa5"]
 albedo_texture = ExtResource("6_bnase")
+
+[sub_resource type="QuadMesh" id="QuadMesh_jolj8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jolj8"]
 size = Vector3(50, 1, 50)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("red_room")]
 script = ExtResource("1_hiqx5")
 items = Array[ExtResource("2_00lmg")]([SubResource("Resource_gggs1"), SubResource("Resource_bukng"), SubResource("Resource_wocc3")])
+red_room = NodePath("Room")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2iqj2")
@@ -100,9 +88,6 @@ button_delay = 0.06
 [node name="arm2" parent="Armature/CharacterBody3D" index="0"]
 transform = Transform3D(-4.37114e-06, 0, 100, -100, 0, -4.37114e-06, 0, -100, 0, -11.3991, 11.8794, -154.586)
 
-[node name="BoneAttachment3D" parent="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D" index="1"]
-transform = Transform3D(0.0174522, -0.999848, 8.87603e-08, 0.999847, 0.0174523, -2.17125e-07, 2.03591e-07, 6.25205e-08, 1, -86.6299, -5.75416, -172.218)
-
 [node name="coffee" type="MeshInstance3D" parent="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug" index="1"]
 transform = Transform3D(2.86153, 7.21349, 1.9435, -0.531959, 2.27265, -7.65194, -7.45176, 2.60779, 1.29256, 4.75323, 24.1571, 0.359793)
 layers = 32768
@@ -111,7 +96,7 @@ mesh = ExtResource("3_b28hc")
 skeleton = NodePath("../../..")
 
 [node name="PlayerCamera" parent="Armature/CharacterBody3D/arm2" index="2"]
-transform = Transform3D(-1, 6.89839e-08, -5.37025e-08, 0, 0.614285, 0.789084, 8.74228e-08, 0.789084, -0.614285, 0.0072045, 0.4799, 0.349177)
+transform = Transform3D(-1, -4.37114e-08, 7.57103e-08, 0, 0.866026, 0.5, -8.74228e-08, 0.5, -0.866025, 0.0072045, 0.4799, 0.349177)
 
 [node name="CollisionShape3D" parent="Armature/CharacterBody3D" index="1"]
 transform = Transform3D(-4.37114e-08, -4.37114e-08, 1, -1, 1.91069e-15, -4.37114e-08, 1.65436e-22, -1, -4.37114e-08, -11.3991, 11.8794, -172.035)
@@ -134,41 +119,7 @@ size = Vector2i(599, 305)
 transform = Transform3D(1, 3.17865e-08, 1.38943e-15, 0, -4.37114e-08, 1, 3.17865e-08, -1, -4.37114e-08, 1.02006e-06, -24.5484, 2.04012e-06)
 fov = 70.01
 
-[node name="ReflectionEnv" type="Area3D" parent="."]
-
-[node name="Floor" type="MeshInstance3D" parent="ReflectionEnv"]
-transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, -0.115342, 0)
-material_override = SubResource("StandardMaterial3D_dcwc0")
-mesh = SubResource("QuadMesh_jolj8")
-skeleton = NodePath("../../WorldEnvironment")
-
-[node name="Wall1" type="MeshInstance3D" parent="ReflectionEnv"]
-transform = Transform3D(10, 0, 0, 0, -10, -1.50996e-06, 0, 1.50996e-06, -10, 0, 0, 5)
-material_override = SubResource("StandardMaterial3D_1rrhv")
-mesh = SubResource("QuadMesh_jolj8")
-skeleton = NodePath("../../WorldEnvironment")
-
-[node name="Wall2" type="MeshInstance3D" parent="ReflectionEnv"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, -5)
-material_override = SubResource("StandardMaterial3D_1rrhv")
-mesh = SubResource("QuadMesh_jolj8")
-skeleton = NodePath("../../WorldEnvironment")
-
-[node name="Wall3" type="MeshInstance3D" parent="ReflectionEnv"]
-transform = Transform3D(-4.37114e-07, 1.50996e-06, -10, 0, -10, -1.50996e-06, -10, -6.60024e-14, 4.37114e-07, 5, 0, -2.18557e-07)
-material_override = SubResource("StandardMaterial3D_1rrhv")
-mesh = SubResource("QuadMesh_jolj8")
-skeleton = NodePath("../../WorldEnvironment")
-
-[node name="Wall4" type="MeshInstance3D" parent="ReflectionEnv"]
-transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -5, 0, 2.18557e-07)
-material_override = SubResource("StandardMaterial3D_1rrhv")
-mesh = SubResource("QuadMesh_jolj8")
-skeleton = NodePath("../../WorldEnvironment")
-
-[node name="FloorShape" type="CollisionShape3D" parent="ReflectionEnv"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.595, 0)
-shape = SubResource("WorldBoundaryShape3D_veqn0")
+[node name="Room" parent="." instance=ExtResource("10_veqn0")]
 
 [node name="PlayerEnv" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0)

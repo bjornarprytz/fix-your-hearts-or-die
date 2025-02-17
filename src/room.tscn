@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctbdmjhbe4hro"]
+
+[ext_resource type="Script" uid="uid://croxp87lxud8r" path="res://room.gd" id="1_4o3f6"]
+[ext_resource type="Texture2D" uid="uid://bw3scxby1ucmb" path="res://assets/Textures/floor_mat_baseColor.png" id="1_bisa2"]
+[ext_resource type="PackedScene" uid="uid://bequalop3acw4" path="res://wall.tscn" id="3_4o3f6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dcwc0"]
+albedo_texture = ExtResource("1_bisa2")
+metallic = 1.0
+roughness = 0.58
+
+[sub_resource type="QuadMesh" id="QuadMesh_jolj8"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_veqn0"]
+
+[node name="ReflectionEnv" type="Area3D"]
+script = ExtResource("1_4o3f6")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_dcwc0")
+mesh = SubResource("QuadMesh_jolj8")
+
+[node name="Wall1" parent="." instance=ExtResource("3_4o3f6")]
+unique_name_in_owner = true
+transform = Transform3D(-10, 8.74228e-07, 1.32005e-13, 8.74228e-07, 10, 1.50996e-06, 0, 1.50996e-06, -10, 0, 5, 5)
+
+[node name="Wall2" parent="." instance=ExtResource("3_4o3f6")]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-07, -1.50996e-06, 10, -8.74228e-07, 10, 1.50996e-06, -10, -8.74228e-07, -4.37114e-07, -5, 5, -2.18557e-07)
+
+[node name="Wall3" parent="." instance=ExtResource("3_4o3f6")]
+unique_name_in_owner = true
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 5, -5)
+
+[node name="Wall4" parent="." instance=ExtResource("3_4o3f6")]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 5, 5, 2.18557e-07)
+
+[node name="FloorShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.595, 0)
+shape = SubResource("WorldBoundaryShape3D_veqn0")

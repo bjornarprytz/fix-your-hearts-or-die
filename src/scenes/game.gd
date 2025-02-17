@@ -5,7 +5,12 @@ extends Node3D
 @export var items: Array[BlackLodgeItem] = []
 
 
+@export var red_room : RedRoom
+
+
 var map: BlackLodgeMap
 
 func _ready() -> void:
 	map = BlackLodgeMap.generate(size, n_objectives, items)
+	
+	red_room.load_data(map.rooms.pick_random())
