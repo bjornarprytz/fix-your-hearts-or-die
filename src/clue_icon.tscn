@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl5oamgmcv2gj"]
+
+[ext_resource type="Texture2D" uid="uid://dbq5lnbme36kh" path="res://assets/Textures/poop.png" id="1_d50vs"]
+[ext_resource type="Script" uid="uid://dhmm0fdcl85s5" path="res://clue_icon.gd" id="2_4uyf2"]
+
+[node name="TextureRect" type="TextureRect"]
+texture = ExtResource("1_d50vs")
+stretch_mode = 4
+script = ExtResource("2_4uyf2")

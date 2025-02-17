@@ -88,6 +88,9 @@ button_delay = 0.06
 [node name="arm2" parent="Armature/CharacterBody3D" index="0"]
 transform = Transform3D(-4.37114e-06, 0, 100, -100, 0, -4.37114e-06, 0, -100, 0, -11.3991, 11.8794, -154.586)
 
+[node name="BoneAttachment3D" parent="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D" index="1"]
+transform = Transform3D(0.0174522, -0.999848, 8.87603e-08, 0.999847, 0.0174523, -2.17125e-07, 2.03591e-07, 6.25205e-08, 1, -86.6299, -5.75416, -172.218)
+
 [node name="coffee" type="MeshInstance3D" parent="Armature/CharacterBody3D/arm2/Armature_001/Skeleton3D/BoneAttachment3D/mug" index="1"]
 transform = Transform3D(2.86153, 7.21349, 1.9435, -0.531959, 2.27265, -7.65194, -7.45176, 2.60779, 1.29256, 4.75323, 24.1571, 0.359793)
 layers = 32768
