@@ -4,15 +4,9 @@ game on itch.io: [link](https://thewarlock.itch.io/fix-your-hearts-or-die)
 
 ## TODO
 
-- Randomize starting room
-
 - Enter room
   - Detect objective
     - Check victory condition
-  - Populate walls with clues
-- Navigation in the room
-  - turn left/right inscryption like
-  - mouse click to inspect the wall/curtain
 
 - Push release with `./push_release.sh`
 
