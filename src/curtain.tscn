@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bequalop3acw4"]
 
-[ext_resource type="Texture2D" uid="uid://dl6aoxle61geu" path="res://assets/Textures/curtains_placeholder.png" id="1_xxgf6"]
-[ext_resource type="Script" uid="uid://b76io5fh0osbb" path="res://wall.gd" id="2_y4f30"]
-[ext_resource type="PackedScene" uid="uid://2o6nvgitwxxc" path="res://curtain_ui.tscn" id="3_iuee5"]
+[ext_resource type="Texture2D" uid="uid://dl6aoxle61geu" path="res://assets/Textures/curtains_placeholder.png" id="1_6udes"]
+[ext_resource type="Script" uid="uid://b76io5fh0osbb" path="res://curtain.gd" id="2_o5bxk"]
+[ext_resource type="PackedScene" uid="uid://2o6nvgitwxxc" path="res://curtain_ui.tscn" id="3_fgb46"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rrhv"]
-albedo_texture = ExtResource("1_xxgf6")
+albedo_texture = ExtResource("1_6udes")
 metallic = 1.0
 roughness = 0.58
 
@@ -29,14 +29,14 @@ size = Vector3(1, 1, 0.0791016)
 [node name="Curtain" type="MeshInstance3D"]
 material_override = SubResource("StandardMaterial3D_1rrhv")
 mesh = SubResource("QuadMesh_jolj8")
-script = ExtResource("2_y4f30")
+script = ExtResource("2_o5bxk")
 
 [node name="GUI" type="Node3D" parent="."]
 
 [node name="SubViewport" type="SubViewport" parent="GUI"]
 size = Vector2i(1024, 512)
 
-[node name="UI" parent="GUI/SubViewport" instance=ExtResource("3_iuee5")]
+[node name="UI" parent="GUI/SubViewport" instance=ExtResource("3_fgb46")]
 unique_name_in_owner = true
 
 [node name="Quad" type="MeshInstance3D" parent="GUI"]

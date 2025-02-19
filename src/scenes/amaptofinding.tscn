@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bpce08kkcsoau"]
+[gd_scene load_steps=25 format=3 uid="uid://bpce08kkcsoau"]
 
 [ext_resource type="PackedScene" uid="uid://dex7jl81nxfoy" path="res://scenes/coffeearm.tscn" id="1_bnase"]
 [ext_resource type="Script" uid="uid://dw3nscnpatwn1" path="res://scenes/game.gd" id="1_hiqx5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dbq5lnbme36kh" path="res://assets/Textures/poop.png" id="4_8xvt2"]
 [ext_resource type="Shader" uid="uid://blw16txnf1wfr" path="res://assets/Shaders/coffeejitters.gdshader" id="4_f76id"]
 [ext_resource type="Texture2D" uid="uid://cespeewrxd4so" path="res://assets/Textures/sad-clown.png" id="5_1rrhv"]
+[ext_resource type="Texture2D" uid="uid://xjole5318wnd" path="res://assets/Textures/black-symbol.png" id="6_8xvt2"]
 [ext_resource type="Texture2D" uid="uid://dmegf3lyemhlf" path="res://assets/Textures/dfc.png" id="6_bnase"]
 [ext_resource type="Script" uid="uid://c3817bcdp1rtg" path="res://tank_controls.gd" id="7_veqn0"]
 [ext_resource type="PackedScene" uid="uid://ctbdmjhbe4hro" path="res://room.tscn" id="10_veqn0"]
@@ -28,6 +29,12 @@ metadata/_custom_type_script = ExtResource("2_00lmg")
 script = ExtResource("2_00lmg")
 description = "Clown"
 icon = ExtResource("5_1rrhv")
+metadata/_custom_type_script = ExtResource("2_00lmg")
+
+[sub_resource type="Resource" id="Resource_1rrhv"]
+script = ExtResource("2_00lmg")
+description = "Black Symbol"
+icon = ExtResource("6_8xvt2")
 metadata/_custom_type_script = ExtResource("2_00lmg")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2iqj2"]
@@ -65,7 +72,9 @@ size = Vector3(50, 1, 50)
 
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("red_room")]
 script = ExtResource("1_hiqx5")
-items = Array[ExtResource("2_00lmg")]([SubResource("Resource_gggs1"), SubResource("Resource_bukng"), SubResource("Resource_wocc3")])
+size = 30
+n_objectives = 3
+items = Array[ExtResource("2_00lmg")]([SubResource("Resource_gggs1"), SubResource("Resource_bukng"), SubResource("Resource_wocc3"), SubResource("Resource_1rrhv")])
 red_room = NodePath("Room")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

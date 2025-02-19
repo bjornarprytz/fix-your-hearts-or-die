@@ -1,30 +1,32 @@
 class_name RedRoom
 extends Area3D
 
-@onready var floor: MeshInstance3D = %Floor
-@onready var wall_1: Curtain = %Wall1
-@onready var wall_2: Curtain = %Wall2
-@onready var wall_3: Curtain = %Wall3
-@onready var wall_4: Curtain = %Wall4
+@onready var curtain_1: Curtain = %Curtain1
+@onready var curtain_2: Curtain = %Curtain2
+@onready var curtain_3: Curtain = %Curtain3
+@onready var curtain_4: Curtain = %Curtain4
 
-@onready var curtains: Array[Curtain] = [wall_1, wall_2, wall_3, wall_4]
+@onready var curtains: Array[Curtain] = [curtain_1, curtain_2, curtain_3, curtain_4]
 
 var _room_data: BlackLodgeMap.Room
 
 func _ready() -> void:
 	for i in range(curtains.size()):
-		var wall = curtains[i]
-		wall.on_clicked.connect(on_curtain_clicked)
+		var curtain = curtains[i]
+		curtain.on_clicked.connect(on_curtain_clicked)
 
 func load_data(room_data: BlackLodgeMap.Room) -> void:
 	_room_data = room_data
-	floor.mesh.surface_set_material(0, floor.material_override)
+	
+	if (room_data.item != null):
+		Events.found_item.emit(room_data.item)
+	
 	
 	for i in range(room_data.futures.size()):
 		var future = room_data.futures[i]
-		var wall = curtains[i]
+		var curtain = curtains[i]
 		
-		wall.load_clues(future, room_data.clues[future])
+		curtain.load_clues(future, room_data.clues[future])
 
 
 func on_curtain_clicked(curtain: Curtain):
