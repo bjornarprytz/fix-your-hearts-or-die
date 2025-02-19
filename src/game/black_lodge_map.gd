@@ -107,7 +107,7 @@ static func generate(size: int, n_objectives: int, items: Array[BlackLodgeItem])
 
 		if (visited.size() != size):
 			# Not all rooms are reachable
-			print("Not all rooms are reachable from room %d" % starting_room.number)
+			print("Not all rooms are reachable from room %d. Trying again..." % starting_room.number)
 			return generate(size, n_objectives, items)
 		
 		# Find shortest path to objectives from each future
@@ -117,7 +117,6 @@ static func generate(size: int, n_objectives: int, items: Array[BlackLodgeItem])
 			var next_queue: Array[Room] = []
 			if starting_room.item != null:
 				starting_room.clues[future].item_distance[starting_room.item] = 0
-				print("Found item %s in starting room %d" % [starting_room.item.description, starting_room.number])
 
 			var distance = 1
 			while (queue.size() > 0):
@@ -126,7 +125,6 @@ static func generate(size: int, n_objectives: int, items: Array[BlackLodgeItem])
 				visited.append(room)
 				if (room.item != null && starting_room.clues[future].item_distance[room.item] == -1):
 					starting_room.clues[future].item_distance[room.item] = distance
-					print("Distance from room %d(>%d) to item %s is %d" % [starting_room.number, future.number, room.item.description, distance])
 				for next_future in room.futures:
 					if !(next_future in visited) and !(next_future in queue) and !(next_future in next_queue):
 						next_queue.push_back(next_future)
